@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ALttP Menu Time Tool</title>
+    <script src="./menu_time_tool_assets/menu_time.js" defer></script>
+    <link href="../styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+      <h1>ALttP Menu Time Tool</h1>
+
+      <p>Sometimes you may find yourself behind the wheel of a large automobile. And sometimes you may find yourself practicing a screen on the Practice Hack and wonder: what would this time be if I weren't pausing to equip an item? So here's a tool that calculates that for you.</p>
+
+      <form id="form">
+        <div class="form-group">
+          <label for="seconds">Seconds:</label>
+          <input type="number" id="seconds" name="seconds" required max="100" min="0" value="0" />
+          <label for="frames">Frames:</label>
+          <input type="number" id="frames" name="frames" required min="0" max="59" value="00" />
+        </div>
+        <div class="form-group">
+          <label for="num_menus">Number of Menus:</label>
+          <input type="number" id="num_menus" name="num_menus" required min="1" max="10" value="1" />
+        </div>
+        <div class="form-group">
+          <label for="num_cursor">Number of Cursor Moves:</label>
+          <input type="number" id="num_cursor" name="num_cursor" required min="1" max="20" value="1" />
+        </div>
+        <div class="form-group">
+          <label for="idle_frames">Idle Frames:</label>
+          <input type="number" id="idle_frames" name="idle_frames" required min="0" max="100" value="0" />
+        </div>
+
+        <div class="form-group">
+          <button type="submit">Calculate</button>
+        </div>
+      </form>
+
+      <p>Time without menu: <span id="output"></span></p>
+
+      <div>
+        <h2>Explanation</h2>
+
+        <h3>Why did you make this?</h5>
+        <p>Because sometimes I'm testing things for myself or looking at other's room times and want to compare times that menu to times that don't. I could of course do the math in my head, but this is made tricky because:</p>
+        <ul>
+          <li>I'm bad at arithmetic.</li>
+          <li>Seconds incrementing every 60th frame makes the arithmetic more difficult than if it were standard base 10 stuff (ie. new digits every unit of '10')</li>
+        </ul>
+
+        <h3>Can you explain more about how it works?</h3>
+        <p>Of course. The short of it is: the time it takes to menu is 64 frames per pause + your idle frame count + the number of times you moved the cursor.</p>
+        <p>It takes 64 frames total to open and shut the menu. Your idle frame count represents the amount of 'dead air' in your menu, or the number of frames you spent doing absolutely nothing while the menu is open. The practice hack counts frames where you move the cursor as 'active', meaning they don't contribute to your idle frame count. Add this all together and you get the result.</p>
+      </div>
+    </main>
+  </body>
+</html>
